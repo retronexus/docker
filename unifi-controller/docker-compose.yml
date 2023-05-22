@@ -10,8 +10,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - MEM_LIMIT=2048M
-      - MEM_START=2048M
+      - MEM_LIMIT=1024
+      - MEM_START=1024
     volumes:
       - /opt/appdata/unifi-controller:/config
     ports:
