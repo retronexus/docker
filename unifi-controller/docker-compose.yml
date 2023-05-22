@@ -6,6 +6,8 @@ services:
     image: lscr.io/linuxserver/unifi-controller:latest
     container_name: unifi-controller
     restart: unless-stopped
+    networks:
+      - host
     environment:
       - PUID=1000
       - PGID=1000
