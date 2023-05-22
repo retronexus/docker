@@ -1,0 +1,13 @@
+---
+version: "3"
+
+services:
+  rancher:
+    image: rancher/rancher:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /opt/appdata/rancher-data:/var/lib/rancher
+    privileged: true
