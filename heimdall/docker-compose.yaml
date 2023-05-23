@@ -1,0 +1,18 @@
+---
+version: "3"
+
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - opt/appdata/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
+    
