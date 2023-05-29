@@ -3,18 +3,18 @@ version: "3"
 
 services:
   portainer:
-    image: linuxserver/jackett:latest
-    container_name: jackett
+    image: linuxserver/radarr:latest
+    container_name: radarr
     restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - jackett-data:/config
+      - radarr-data:/config
       - media-data:/data
     ports:
-      - 9117:9117/tcp
+      - 7878:7878/tcp
     networks:
       - rn-net
 
@@ -23,13 +23,13 @@ networks:
     name: rn-net
 
 volumes:
-  jackett-data:
-    name: jackett-data  
+  sonarr-data:
+    name: radarr-data
     driver: local
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-      device: :/mnt/nfs/docker-volumes/jackett-data
+      device: :/mnt/nfs/docker-volumes/orion/radarr-data
 
   media-data:
     name: media-data
