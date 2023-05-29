@@ -20,6 +20,7 @@ services:
 
 networks:
   rn-net:
+    name: rn-net
 
 volumes:
   radarr-data:
@@ -29,7 +30,7 @@ volumes:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
       device: :/mnt/nfs/docker-volumes/radarr-data
-      
+
   media-data:
     name: media-data
     driver: local

@@ -40,3 +40,4 @@ volumes:
 
 networks:
   rn-net:
+    name: rn-net
