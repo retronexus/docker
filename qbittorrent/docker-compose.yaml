@@ -23,11 +23,12 @@ services:
 
 volumes:
   qbittorrent-data:
+    name: qbittorrent-data
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /mnt/nfs/docker-volumes/qbittorrent-data
+      device: /mnt/nfs/docker-volumes
 
 networks:
   rn-net:
