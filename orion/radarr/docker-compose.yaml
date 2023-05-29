@@ -23,7 +23,7 @@ networks:
     name: rn-net
 
 volumes:
-  sonarr-data:
+  radarr-data:
     name: radarr-data
     driver: local
     driver_opts:
