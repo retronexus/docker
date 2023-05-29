@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Berlin
       - WEBUI_PORT=8070
     volumes:
-      - /mnt/nfs/docker-volumes/qbittorrent-data:/config
+      - qbittorrent-data:/config
       - /mnt/vault/data/torrents:/data
     ports:
       - 6881:6881/tcp
@@ -20,6 +20,14 @@ services:
       - 8070:8070/tcp
     networks:
       - rn-net
+
+volumes:
+  qbittorrent-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /mnt/nfs/docker-volumes/qbittorrent-data
 
 networks:
   rn-net:
