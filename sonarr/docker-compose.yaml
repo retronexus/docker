@@ -1,0 +1,36 @@
+---
+version: "3"
+
+services:
+  portainer:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - sonarr-data:/config
+      - data:/data
+    ports:
+      - 8989:8989/tcp
+    networks:
+      - rn-net
+
+networks:
+  rn-net:
+
+volumes:
+  sonarr-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/sonarr-data
+  data:
+      driver: local
+      driver_opts:
+        type: nfs
+        o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+        device: :/mnt/vault/data
