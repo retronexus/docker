@@ -21,6 +21,7 @@ services:
 volumes:
   portainer-data:
     driver: local
+    name: qbittorrent-data
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft

@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - sonarr-data:/config
-      - data:/data
+      - media-data:/data
     ports:
       - 8989:8989/tcp
     networks:
@@ -23,14 +23,17 @@ networks:
 
 volumes:
   sonarr-data:
+    name: sonarr-data
     driver: local
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
       device: :/mnt/nfs/docker-volumes/sonarr-data
-  data:
-      driver: local
-      driver_opts:
-        type: nfs
-        o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-        device: :/mnt/vault/data
+      
+  media-data:
+    name: media-data
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/vault/data
