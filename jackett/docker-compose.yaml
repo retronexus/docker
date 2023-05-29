@@ -20,6 +20,7 @@ services:
 
 networks:
   rn-net:
+    name: rn-net
 
 volumes:
   jackett-data:
