@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Berlin
       - WEBUI_PORT=8070
     volumes:
-      - qbittorrent-data:/config
+      - qbittorrent-data:/config/qBittorrent
       - /mnt/vault/data/torrents:/data
     ports:
       - 6881:6881/tcp
