@@ -11,12 +11,15 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - radarr-data:/data
+      - radarr-data:/config
+      - data:/data
     ports:
-      - 8000:8000
-      - 9000:9000
+      - 7878:7878/tcp
+    networks:
+      - rn-net
+
+networks:
+  rn-net:
 
 volumes:
   radarr-data:
