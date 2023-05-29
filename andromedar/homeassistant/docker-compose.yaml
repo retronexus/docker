@@ -13,8 +13,6 @@ services:
     network_mode: host
     volumes:
       - homeassistant-data:/data
-    ports:
-      - 8123:8123
 
 volumes:
   homeassistant-data:
