@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  bind9:
+    container_name: bind9
+    image: ubuntu/bind9:latest
+    environment:
+      - BIND9_USER=root
+      - TZ=Europe/Berlin
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    volumes:
+      - bind9-data:/etc/bind
+      - ./cache:/var/cache/bind
+      - ./records:/var/lib/bind
+    restart: always
+
+volumes:
+  bind9-data:
+    name: bind9-data  
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/andromedar/bind9-data
