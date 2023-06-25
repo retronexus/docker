@@ -21,8 +21,8 @@ services:
 volumes:
   portainer-data:
     driver: local
-    name: portainer-data-nextcloud
+    name: portainer-data-lynx
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-      device: :/mnt/nfs/docker-volumes/nextcloud/portainer-data
+      device: :/mnt/nfs/docker-volumes/lynx/portainer-data
