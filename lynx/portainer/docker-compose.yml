@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: unless-stopped
+    links:
+      - mariadb
+      - redis
+    networks:
+      - nextcloud_network
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud-data:/var/www/html
+      - nextcloud:/data
+    environment:
+      - MYSQL_HOST=mariadb
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+    volumes:
+      - nextcloud-redis-data:/data
+    networks:
+      - nextcloud_network
+  
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    networks:
+      - nextcloud_network
+    volumes:
+      - nextcloud-mariadb-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+networks:
+  nextcloud_network:
+    name: nextcloud_network
+
+volumes:
+  nextcloud-data:
+    name: nextcloud-data  
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/lynx/nextcloud-data
+
+  nextcloud:
+    name: nextcloud
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/vault/nextcloud
+
+  nextcloud-redis-data:
+    name: nextcloud-redis-data  
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/lynx/nextcloud-redis-data
+
+  nextcloud-maridadb-data:
+    name: nextcloud-maridadb-data  
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/lynx/nextcloud-maridadb-data
