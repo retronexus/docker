@@ -1,0 +1,28 @@
+---
+version: "3"
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer-data:/data
+    ports:
+      - 8000:8000
+      - 9000:9000
+
+volumes:
+  portainer-data:
+    driver: local
+    name: portainer-data-nextcloud
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/nextcloud/portainer-data
