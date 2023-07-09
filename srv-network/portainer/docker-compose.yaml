@@ -25,5 +25,5 @@ volumes:
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-      device: :/mnt/nfs/docker-volumes/server-network/portainer-data
+      device: :/mnt/nfs/docker-volumes/srv-network/portainer-data
     
