@@ -1,0 +1,25 @@
+---
+version: "3"
+
+services:
+  homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: homeassistant
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    network_mode: host
+    volumes:
+      - homeassistant-data:/data
+
+volumes:
+  homeassistant-data:
+    driver: local
+    name: homeassistant-data
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
+      device: :/mnt/nfs/docker-volumes/srv-network/homeassistant-data
+ 
