@@ -13,13 +13,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - portainer-data-andromedar:/data
+      - srv-network-portainer-data:/data
     ports:
       - 8000:8000
       - 9000:9000
 
 volumes:
-  portainer-data-andromedar:
+  srv-network-portainer-data:
     driver: local
     name: portainer-data-andromedar
     driver_opts:
