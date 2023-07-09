@@ -23,4 +23,4 @@ volumes:
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-      device: :/mnt/nfs/docker-volumes/andromedar/bind9-data
+      device: :/mnt/nfs/docker-volumes/srv-network/bind9-data
