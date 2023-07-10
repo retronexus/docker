@@ -2,19 +2,19 @@
 version: "3"
 
 services:
-  radarr:
-    image: linuxserver/radarr:latest
-    container_name: radarr
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
     restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - radarr-data:/config
+      - sonarr-data:/config
       - media-data:/data
     ports:
-      - 7878:7878/tcp
+      - 8989:8989/tcp
     networks:
       - rn-net
 
@@ -23,13 +23,13 @@ networks:
     name: rn-net
 
 volumes:
-  radarr-data:
-    name: radarr-data
+  sonarr-data:
+    name: sonarr-data
     driver: local
     driver_opts:
       type: nfs
       o: nfsvers=4,addr=10.10.30.31,rw,nolock,soft
-      device: :/mnt/nfs/docker-volumes/orion/radarr-data
+      device: :/mnt/nfs/docker-volumes/srv-media/sonarr-data
 
   media-data:
     name: media-data
