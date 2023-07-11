@@ -24,6 +24,8 @@ networks:
 
 volumes:
   sonarr-data:
+      name: sonarr-data
+
   media-data:
     name: media-data
     driver: local

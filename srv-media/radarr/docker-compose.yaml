@@ -24,7 +24,8 @@ networks:
 
 volumes:
   radarr-data:
-  
+    name: radarr-data
+
   media-data:
     name: media-data
     driver: local
