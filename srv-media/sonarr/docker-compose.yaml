@@ -23,6 +23,7 @@ networks:
     name: rn-net
 
 volumes:
+  sonarr-data:
   media-data:
     name: media-data
     driver: local
