@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    hostname: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8888:8888/tcp # HTTP Proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
+      - 7878:7878/tcp # radarr
+    volumes:
+      - /docker/gluetun/config:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - VPN_ENDPOINT_IP=165.231.178.10
+      - VPN_ENDPOINT_PORT=51820
+      - WIREGUARD_PUBLIC_KEY=fHGPlsNkuvuyLoqKp/Yfh3R31jdGN5JWRZ5cE1aW/UM=
+      - WIREGUARD_PRIVATE_KEY=CKPm/dFgLJmo4dULSC4Oy6HdIJr/F64aAN4bKy6jN1w=
+      - WIREGUARD_ADDRESSES=172.24.0.2/32
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    hostname: radarr
+    restart: unless-stopped
+    environment:
+      - UMASK_SET=022 # control permissions of files and dirs created by radarr
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /docker/radarr/config:/config # Database and Radarr configs
+      - /media:/media
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
