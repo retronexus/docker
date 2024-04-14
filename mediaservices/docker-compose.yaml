@@ -82,7 +82,6 @@ services:
   qbittorrent:
     image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
-    hostname: qbittorrent
     restart: unless-stopped
     environment:
       - TZ=Europe/London # timezone setting
