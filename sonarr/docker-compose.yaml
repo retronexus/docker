@@ -1,16 +1,16 @@
 version: "3"
 services:
-  radarr:
-    image: linuxserver/radarr:latest
-    container_name: radarr
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
     restart: unless-stopped
     environment:
-      - UMASK_SET=022 # control permissions of files and dirs created by radarr
+      - UMASK_SET=022 # control permissions of files and dirs created by sonarr
       - TZ=Europe/London # timezone setting
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/radarr/config:/config # Database and Radarr configs
+      - /docker/sonarr/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data:/media
     networks:
       - gluetun-net

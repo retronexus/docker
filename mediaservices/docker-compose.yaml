@@ -13,6 +13,7 @@ services:
       - 8388:8388/tcp # Shadowsocks
       - 8388:8388/udp # Shadowsocks
       - 7878:7878/tcp # radarr
+      - 8989:8989/tcp # sonarr
     volumes:
       - /docker/gluetun/config:/gluetun
     environment:
@@ -35,7 +36,24 @@ services:
       - PGID=1000 # for GroupID
     volumes:
       - /docker/radarr/config:/config # Database and Radarr configs
-      - mediaserver/data:/media
+      - /home/retronexus/mediaserver/data:/media
     network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - UMASK_SET=022 # control permissions of files and dirs created by sonarr
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /docker/sonarr/config:/config # Database and sonarr configs
+      - /home/retronexus/mediaserver/data:/media
+    networks:
+      - gluetun-net
     depends_on:
       - gluetun
