@@ -88,6 +88,7 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
       - WEBUI_PORT=8090
+      - TORRENTING_PORT=6881
     volumes:
       - /docker/qbittorrent/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data/torrents:/data
