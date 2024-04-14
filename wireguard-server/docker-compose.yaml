@@ -1,0 +1,27 @@
+# Use docker image from linuxserver.io
+
+version: "3.8"
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    container_name: wireguard
+    cap_add:  # Permissions for wireguard
+      - NET_ADMIN   #Perform various network related operations
+      - SYS_MODULE  #Load and unload kernel modules
+    environment:
+      - PUID=1000   # id of user
+      - GUID=1000   # id of user
+      - TZ=Europe/London  # Set timezone
+      - SERVERURL=192.168.178.41  # server IP
+      - SERVERPORT=51820 # Set server port
+      - PEERS=1 # how many client configs to be created
+      - PEERDNS=auto  # set DNS automatically
+      - INTERNAL_SUBNET=10.13.13.0 #default
+    volumes:
+      - /docker/wireguard-server/config:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1 # default
+    restart: unless-stopped
