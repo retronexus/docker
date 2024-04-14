@@ -1,6 +1,6 @@
 # Use docker image from linuxserver.io
 
-version: "3.8"
+version: "3"
 services:
   wireguard:
     image: linuxserver/wireguard
