@@ -13,6 +13,7 @@ services:
     volumes:
       - /docker/radarr/config:/config # Database and Radarr configs
       - /media:/media
-    network_mode: container:gluetun
+    networks:
+      - gluetun-net
     depends_on:
       - gluetun
