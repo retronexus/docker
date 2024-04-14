@@ -23,3 +23,6 @@ services:
       - WIREGUARD_PUBLIC_KEY=fHGPlsNkuvuyLoqKp/Yfh3R31jdGN5JWRZ5cE1aW/UM=
       - WIREGUARD_PRIVATE_KEY=CKPm/dFgLJmo4dULSC4Oy6HdIJr/F64aAN4bKy6jN1w=
       - WIREGUARD_ADDRESSES=172.24.0.2/32
+networks:
+  gluetun-net:
+    driver: bridge
