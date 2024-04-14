@@ -88,5 +88,7 @@ services:
     volumes:
       - /docker/qbittorrent/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data/torrents:/data
+    ports:
+      - "8081:8081"      
     depends_on:
       - gluetun
