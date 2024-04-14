@@ -18,7 +18,7 @@ services:
       - 8989:8989/tcp # sonarr
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
-      - 8082:8082     # qbittorrent
+      - 8090:8090     # qbittorrent
     volumes:
       - /docker/gluetun/config:/gluetun
     environment:
@@ -79,17 +79,17 @@ services:
       - gluetun
 
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
+    image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
     restart: unless-stopped
     environment:
       - TZ=Europe/London # timezone setting
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
-      - WEBUI_PORT=8082
-      - TORRENTING_PORT=6881
+      - WEBUI_PORT=8090
     volumes:
       - /docker/qbittorrent/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data/torrents:/data
+    network_mode: "service:gluetun"      
     depends_on:
       - gluetun
