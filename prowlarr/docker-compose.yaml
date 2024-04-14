@@ -1,8 +1,8 @@
 version: "3"
 services:
-  sonarr:
-    image: linuxserver/sonarr:latest
-    container_name: sonarr
+  prowlarr:
+    image: linuxserver/prowlarr:latest
+    container_name: prowlarr
     restart: unless-stopped
     environment:
       - UMASK_SET=022 # control permissions of files and dirs created by sonarr
@@ -10,5 +10,5 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/sonarr/config:/config # Database and sonarr configs
-      - /home/retronexus/mediaserver/data:/media
+      - /docker/prowlarr/config:/config # Database and sonarr configs
+  

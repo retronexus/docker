@@ -36,7 +36,7 @@ services:
       - PGID=1000 # for GroupID
     volumes:
       - /docker/radarr/config:/config # Database and Radarr configs
-      - /home/retronexus/mediaserver/data:/media
+      - /home/retronexus/mediaserver/data:/data
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
@@ -52,7 +52,22 @@ services:
       - PGID=1000 # for GroupID
     volumes:
       - /docker/sonarr/config:/config # Database and sonarr configs
-      - /home/retronexus/mediaserver/data:/media
+      - /home/retronexus/mediaserver/data:/data
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
+
+  prowlarr:
+    image: linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - UMASK_SET=022 # control permissions of files and dirs created by sonarr
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /docker/prowlarr/config:/config # Database and sonarr configs
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
