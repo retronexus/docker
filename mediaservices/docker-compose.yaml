@@ -4,7 +4,6 @@ services:
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
-    hostname: gluetun
     cap_add:
       - NET_ADMIN
     devices:
@@ -28,7 +27,6 @@ services:
   radarr:
     image: linuxserver/radarr:latest
     container_name: radarr
-    hostname: radarr
     restart: unless-stopped
     environment:
       - UMASK_SET=022 # control permissions of files and dirs created by radarr
