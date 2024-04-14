@@ -1,9 +1,9 @@
 version: "3"
-
 services:
   gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun
+    hostname: gluetun
     cap_add:
       - NET_ADMIN
     devices:
