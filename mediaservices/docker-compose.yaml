@@ -72,7 +72,7 @@ services:
       - gluetun
 
   readarr:
-    image: linuxserver/readarr:latest
+    image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     restart: unless-stopped
     environment:
