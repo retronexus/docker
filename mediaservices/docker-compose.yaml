@@ -21,7 +21,7 @@ services:
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
     volumes:
-      - /docker/gluetun/config:/gluetun
+      - /src/docker-config/gluetun/config:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=custom
       - VPN_TYPE=wireguard
@@ -42,7 +42,7 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/radarr/config:/config # Database and Radarr configs
+      - /src/docker-config/radarr/config:/config # Database and Radarr configs
       - /home/retronexus/mediaserver/data:/data
     network_mode: "service:gluetun"
     depends_on:
@@ -58,7 +58,7 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/sonarr/config:/config # Database and sonarr configs
+      - /src/docker-config/sonarr/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data:/data
     network_mode: "service:gluetun"
     depends_on:
@@ -74,7 +74,7 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/prowlarr/config:/config # Database and sonarr configs
+      - /src/docker-config/prowlarr/config:/config # Database and sonarr configs
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
@@ -90,7 +90,7 @@ services:
       - WEBUI_PORT=8090
       - TORRENTING_PORT=6881
     volumes:
-      - /docker/qbittorrent/config:/config # Database and sonarr configs
+      - /src/docker-config/qbittorrent/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data/torrents:/data
     network_mode: "service:gluetun"      
     depends_on:

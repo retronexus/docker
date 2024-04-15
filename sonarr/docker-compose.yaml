@@ -10,5 +10,5 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/sonarr/config:/config # Database and sonarr configs
+      - /src/docker-config/sonarr/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data:/data

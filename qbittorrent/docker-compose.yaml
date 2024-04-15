@@ -11,5 +11,5 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /docker/qbittorrent/config:/config # Database and sonarr configs
+      - /src/docker-config/qbittorrent/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data/torrents:/data

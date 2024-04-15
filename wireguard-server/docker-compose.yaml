@@ -18,7 +18,7 @@ services:
       - PEERDNS=auto  # set DNS automatically
       - INTERNAL_SUBNET=10.13.13.0 #default
     volumes:
-      - /docker/wireguard-server/config:/config
+      - /src/docker-config/wireguard-server/config:/config
       - /lib/modules:/lib/modules
     ports:
       - "5000:5000"

@@ -10,5 +10,5 @@ services:
       - PUID=1000 # for UserID
       - PGID=1000 # for GroupID
     volumes:
-      - /docker/radarr/config:/config # Database and Radarr configs
+      - /src/docker-config/radarr/config:/config # Database and Radarr configs
       - /home/retronexus/mediaserver/data:/data
