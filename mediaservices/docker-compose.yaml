@@ -28,6 +28,7 @@ services:
       - 8920:8920     # jellyfin
       - 7359:7359/udp # jellyfin
       - 1900:1900/udp # jellyfin
+      - 8081:8081     # calibre
 
     volumes:
       - /src/docker-config/gluetun/config:/gluetun
@@ -172,6 +173,21 @@ services:
       - PGID=1000 # for GroupID
     volumes:
       - /src/docker-config/hydra2/config:/config # Database and sonarr configs
+    network_mode: "service:gluetun"      
+    depends_on:
+      - gluetun
+
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    restart: unless-stopped
+    environment:
+      - UMASK_SET=022 # control permissions of files and dirs created by radarr
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/calibre/config:/config # Database and calibre configs         
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
