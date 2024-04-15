@@ -191,3 +191,19 @@ services:
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
+
+  calibre-web:
+      image: lscr.io/linuxserver/calibre-web:latest
+      container_name: calibre-web
+      restart: unless-stopped
+      environment:
+        - UMASK_SET=022 # control permissions of files and dirs created by radarr
+        - TZ=Europe/London # timezone setting
+        - PUID=1000 # for UserID
+        - PGID=1000 # for GroupID
+      volumes:
+        - /src/docker-config/calibre-web/config:/config # Database and calibre configs
+        - /src/docker-config/calibre/config:/books
+      network_mode: "service:gluetun"      
+      depends_on:
+        - gluetun
