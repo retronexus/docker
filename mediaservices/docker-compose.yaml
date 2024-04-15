@@ -97,7 +97,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - /src/docker-config/qbittorrent/config:/config # Database and sonarr configs
-      - /home/retronexus/mediaserver/data/torrents:/data
+      - /home/retronexus/mediaserver/data/torrents:/data/torrents
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
@@ -122,8 +122,8 @@ services:
       - TZ=Europe/London # timezone setting
     volumes:
       - /src/docker-config/jellyfin/config:/config
-      - /home/retronexus/mediaserver/data/media/movies:/data/movies
-      - /home/retronexus/mediaserver/data/media/tv:/data/tv
+      - /home/retronexus/mediaserver/data/media:/data/media
+      - /home/retronexus/mediaserver/data/media/:/data/media
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
