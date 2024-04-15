@@ -16,6 +16,7 @@ services:
       - 8388:8388/udp # Shadowsocks
       - 7878:7878/tcp # radarr
       - 8989:8989/tcp # sonarr
+      - 8787:8787     # readarr
       - 9696:9696     # prowlarr
       - 8191:8191     # prowlarr
       - 6881:6881     # qbittorrent
@@ -66,6 +67,22 @@ services:
     volumes:
       - /src/docker-config/sonarr/config:/config # Database and sonarr configs
       - /home/retronexus/mediaserver/data:/data
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
+
+  readarr:
+    image: linuxserver/readarr:latest
+    container_name: readarr
+    restart: unless-stopped
+    environment:
+      - UMASK_SET=022 # control permissions of files and dirs created by sonarr
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/readarr/config:/config # Database and sonarr configs
+      - /home/retronexus/mediaserver/data/media/books:/books
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
