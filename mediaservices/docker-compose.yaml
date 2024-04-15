@@ -22,6 +22,7 @@ services:
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
+      - 8091:8091     # sabnzbd
       - 8096:8096     # jellyfin
       - 8920:8920     # jellyfin
       - 7359:7359/udp # jellyfin
@@ -142,8 +143,6 @@ services:
       - /src/docker-config/sabnzbd/config:/config # Database and Radarr configs
       - /home/retronexus/mediaserver/data:/downloads
       - /home/retronexus/mediaserver/data/media/usenet/incomplete:/incomplete-downloads
-    ports:
-      - 8091:8091
     depends_on:
       - gluetun
 
