@@ -21,6 +21,11 @@ services:
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
+      - 8096:8096     # jellyfin
+      - 8920:8920     # jellyfin
+      - 7359:7359/udp # jellyfin
+      - 1900:1900/udp # jellyfin
+
     volumes:
       - /src/docker-config/gluetun/config:/gluetun
     environment:
@@ -104,5 +109,21 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Europe/London # timezone setting
+    depends_on:
+      - gluetun
+
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped          
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London # timezone setting
+    volumes:
+      - /src/docker-config/jellyfin/config:/config
+      - /home/retronexus/mediaserver/data/media/movies:/data/movies
+      - /home/retronexus/mediaserver/data/media/tv:/data/tv
+    network_mode: "service:gluetun"      
     depends_on:
       - gluetun
