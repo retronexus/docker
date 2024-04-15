@@ -1,0 +1,16 @@
+version: "3"
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/sabnzbd/config:/config # Database and Radarr configs
+      - /home/retronexus/mediaserver/data:/downloads
+      - /home/retronexus/mediaserver/data/media/usenet/incomplete:/incomplete-downloads
+    ports:
+      - 8091:8091
