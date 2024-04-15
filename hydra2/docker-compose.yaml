@@ -1,0 +1,14 @@
+version: "3"
+services:
+  hydra2:
+    image: linuxserver/nzbhydra2:latest
+    container_name: hydra2
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/hydra2/config:/config # Database and sonarr configs
+    ports:
+      - 5076:5076

@@ -23,6 +23,7 @@ services:
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
       - 8091:8080     # sabnzbd
+      - 5076:5076     # hydra2
       - 8096:8096     # jellyfin
       - 8920:8920     # jellyfin
       - 7359:7359/udp # jellyfin
@@ -157,6 +158,20 @@ services:
     volumes:
       - /src/docker-config/jellyfin/config:/config
       - /home/retronexus/mediaserver/data/media:/data/media
+    network_mode: "service:gluetun"      
+    depends_on:
+      - gluetun
+
+  hydra2:
+    image: linuxserver/nzbhydra2:latest
+    container_name: hydra2
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/hydra2/config:/config # Database and sonarr configs
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
