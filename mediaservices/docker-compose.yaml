@@ -17,6 +17,7 @@ services:
       - 7878:7878/tcp # radarr
       - 8989:8989/tcp # sonarr
       - 9696:9696     # prowlarr
+      - 8191:8191     # prowlarr
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
