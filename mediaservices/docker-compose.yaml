@@ -95,3 +95,13 @@ services:
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    network_mode: "service:gluetun"      
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # timezone setting
+    depends_on:
+      - gluetun
