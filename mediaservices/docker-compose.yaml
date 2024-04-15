@@ -29,6 +29,7 @@ services:
       - 7359:7359/udp # jellyfin
       - 1900:1900/udp # jellyfin
       - 8081:8081     # calibre
+      - 8083:8083     # calibre-web
 
     volumes:
       - /src/docker-config/gluetun/config:/gluetun
