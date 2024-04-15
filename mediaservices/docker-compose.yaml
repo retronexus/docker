@@ -82,7 +82,7 @@ services:
       - PGID=1000 # for GroupID
     volumes:
       - /src/docker-config/readarr/config:/config # Database and sonarr configs
-      - /home/retronexus/mediaserver/data/media/books:/books
+      - /home/retronexus/mediaserver/data:/data
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
