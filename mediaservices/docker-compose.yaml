@@ -143,7 +143,6 @@ services:
         - TZ=Europe/London # timezone setting
         - PUID=1000 # for UserID
         - PGID=1000 # for GroupID
-        - JELLYFIN_TYPE=emby
     volumes: 
         - /src/docker-config/jellyseerr/config:/app/config # Database and Radarr configs
     network_mode: "service:gluetun"      
