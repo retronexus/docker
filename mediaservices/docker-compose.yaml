@@ -135,7 +135,7 @@ services:
       - gluetun
 
   jellyseerr: 
-    image: hotio/jellyseerr:latest 
+    image: ghcr.io/hotio/jellyseerr:latest 
     container_name: jellyseerr 
     restart: unless-stopped 
     environment: 
