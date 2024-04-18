@@ -19,7 +19,7 @@ services:
       - 8787:8787     # readarr
       - 9696:9696     # prowlarr
       - 8191:8191     # prowlarr
-      - 5055:5055     # overseerr
+      - 5055:5055     # jellyseer
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
@@ -134,20 +134,21 @@ services:
     depends_on:
       - gluetun
 
-  overseerr:
-      image: lscr.io/linuxserver/overseerr:latest
-      container_name: overseerr
-      restart: unless-stopped
-      environment:
+  jellyseerr: 
+    image: fallenbagel/jellyseerr:latest 
+    container_name: jellyseerr 
+    restart: unless-stopped 
+    environment: 
         - TZ=Europe/London # timezone setting
         - PUID=1000 # for UserID
         - PGID=1000 # for GroupID
-      volumes:
-        - /src/docker-config/overseerr/config:/config # Database and Radarr configs
-        - /home/retronexus/mediaserver/data:/data
-      network_mode: "service:gluetun"      
-      depends_on:
-        - gluetun
+    volumes: 
+        - /src/docker-config/jellyseerr/config:/config # Database and Radarr configs
+    network_mode: "service:gluetun"      
+    depends_on: 
+      - gluetun
+      - sonarr 
+      - radarr        
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest

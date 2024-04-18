@@ -1,0 +1,17 @@
+version: "3"
+services:
+  jellyseerr: 
+    image: fallenbagel/jellyseerr:latest 
+    container_name: jellyseerr 
+    environment: 
+        - TZ=Europe/London # timezone setting
+        - PUID=1000 # for UserID
+        - PGID=1000 # for GroupID
+    volumes: 
+      - ./configs/mediarr/jellyseerr:/app/config 
+    restart: unless-stopped 
+    ports: 
+      - 5055:5055 
+    depends_on: 
+      - sonarr 
+      - radarr
