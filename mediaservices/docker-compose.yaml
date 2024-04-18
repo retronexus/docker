@@ -181,9 +181,6 @@ services:
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
-    networks:
-      - mediaserver
-
 
   hydra2:
     image: linuxserver/nzbhydra2:latest
