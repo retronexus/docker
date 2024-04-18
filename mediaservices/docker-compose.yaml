@@ -43,6 +43,8 @@ services:
       - WIREGUARD_PRIVATE_KEY=CKPm/dFgLJmo4dULSC4Oy6HdIJr/F64aAN4bKy6jN1w=
       - WIREGUARD_ADDRESSES=172.24.0.2/32
       - HEALTH_VPN_DURATION_INITIAL=120s
+    networks:
+      - mediaserver
 
   radarr:
     image: linuxserver/radarr:latest
@@ -149,7 +151,9 @@ services:
     depends_on: 
       - gluetun
       - sonarr 
-      - radarr        
+      - radarr    
+    networks:
+      - mediaserver
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
@@ -181,6 +185,9 @@ services:
     network_mode: "service:gluetun"      
     depends_on:
       - gluetun
+    networks:
+      - mediaserver
+
 
   hydra2:
     image: linuxserver/nzbhydra2:latest
@@ -226,3 +233,7 @@ services:
       network_mode: "service:gluetun"      
       depends_on:
         - gluetun
+
+networks:
+  mediaserver:
+    external: true
