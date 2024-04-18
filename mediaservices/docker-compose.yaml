@@ -19,7 +19,6 @@ services:
       - 8787:8787     # readarr
       - 9696:9696     # prowlarr
       - 8191:8191     # prowlarr
-      - 5055:5055     # jellyseer
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8090:8090     # qbittorrent
