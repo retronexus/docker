@@ -135,10 +135,11 @@ services:
       - gluetun
 
   jellyseerr: 
-    image: fallenbagel/jellyseerr:latest 
+    image: hotio/jellyseerr:latest 
     container_name: jellyseerr 
     restart: unless-stopped 
     environment: 
+        - UMASK_SET=022 # control permissions of files and dirs created by sonarr
         - TZ=Europe/London # timezone setting
         - PUID=1000 # for UserID
         - PGID=1000 # for GroupID
