@@ -1,0 +1,15 @@
+version: "3"
+services:
+  overseerr:
+    image: linuxserver/overseerr:latest
+    container_name: overseerr
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # timezone setting
+      - PUID=1000 # for UserID
+      - PGID=1000 # for GroupID
+    volumes:
+      - /src/docker-config/overseerr/config:/config # Database and Radarr configs
+      - /home/retronexus/mediaserver/data:/data
+    ports:
+      - 5055:5055
