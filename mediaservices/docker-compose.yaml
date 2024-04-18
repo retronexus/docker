@@ -148,7 +148,6 @@ services:
     ports: 
       - 5055:5055        
     depends_on: 
-      - gluetun
       - sonarr 
       - radarr    
 
