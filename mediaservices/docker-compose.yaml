@@ -135,7 +135,7 @@ services:
       - gluetun
 
   jellyseerr: 
-    image: ghcr.io/hotio/jellyseerr:latest 
+    image: gfallenbagel/jellyseerr:develop
     container_name: jellyseerr 
     restart: unless-stopped 
     environment: 
@@ -145,7 +145,7 @@ services:
         - PGID=1000 # for GroupID
         - JELLYFIN_TYPE=emby
     volumes: 
-        - /src/docker-config/jellyseerr/config:/config # Database and Radarr configs
+        - /src/docker-config/jellyseerr/config:/app/config # Database and Radarr configs
     network_mode: "service:gluetun"      
     depends_on: 
       - gluetun
