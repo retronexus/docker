@@ -145,6 +145,8 @@ services:
         - PGID=1000 # for GroupID
     volumes: 
         - /src/docker-config/jellyseerr/config:/app/config # Database and Radarr configs
+    ports: 
+      - 5055:5055        
     depends_on: 
       - gluetun
       - sonarr 
