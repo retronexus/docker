@@ -135,7 +135,7 @@ services:
       - gluetun
 
   jellyseerr: 
-    image: gfallenbagel/jellyseerr:develop
+    image: fallenbagel/jellyseerr:develop
     container_name: jellyseerr 
     restart: unless-stopped 
     environment: 
