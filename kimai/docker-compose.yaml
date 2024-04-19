@@ -3,6 +3,7 @@ version: "3.8"
 services:
   sqldb:
     image: mysql:8.3
+    container_name: kimai_mysql
     restart: unless-stopped
     volumes:
       - /home/retronexus/database/mysql/kimai:/var/lib/mysql
