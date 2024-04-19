@@ -33,5 +33,13 @@ services:
       - TRUSTED_HOSTS=localhost,127.0.0.1
     volumes:
       - /src/public/kimai:/opt/kimai/public
-    ports:
-        - 8001:8001
+
+  nginx:
+      image: tobybatch/nginx-fpm-reverse-proxy
+      ports:
+        - 8080:80
+      volumes:
+        - /src/public/kimai:/opt/kimai/public:ro
+      restart: unless-stopped
+      depends_on:
+        - kimai
