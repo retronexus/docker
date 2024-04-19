@@ -2,8 +2,7 @@ version: "3"
 services:
   homeassistant:
     image: "ghcr.io/home-assistant/home-assistant:stable"
-    container_name: gluetun
-    hostname: gluetun
+    container_name: homeassistant
     volumes:
       - /src/docker-config/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
