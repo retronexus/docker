@@ -33,3 +33,5 @@ services:
       - TRUSTED_HOSTS=localhost,127.0.0.1
     volumes:
       - /src/public/kimai:/opt/kimai/public
+    ports:
+        - 8001:8001
