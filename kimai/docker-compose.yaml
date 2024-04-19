@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  sqldb:
+    image: mysql:8.3
+    restart: unless-stopped
+    volumes:
+      - /home/retronexus/database/mysql/kimai:/var/lib/mysql
+    env_file:
+      - .env
+    environment:
+      - MYSQL_DATABASE=kimai
+      - MYSQL_USER=retronexus
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    command: --default-storage-engine innodb
+    healthcheck:
+      test: mysqladmin -p$$MYSQL_ROOT_PASSWORD ping -h localhost
+      interval: 20s
+      start_period: 10s
+      timeout: 10s
+      retries: 3
