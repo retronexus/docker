@@ -36,6 +36,7 @@ services:
 
   nginx:
       image: tobybatch/nginx-fpm-reverse-proxy
+      container_name: kimai_nginx
       ports:
         - 8080:80
       volumes:
