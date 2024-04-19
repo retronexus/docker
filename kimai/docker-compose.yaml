@@ -21,3 +21,14 @@ services:
       start_period: 10s
       timeout: 10s
       retries: 3
+
+  kimai:
+    image: kimai/kimai2:latest
+    restart: unless-stopped
+    environment:
+      - ADMINMAIL=${KIMAI_ADMINMAIL}
+      - ADMINPASS=${KIMAI_ADMINPASS}
+      - DATABASE_URL=mysql://retronexus:${MYSQL_PASSWORD}@sqldb/kimai?charset=utf8mb4&serverVersion=8.3.0
+      - TRUSTED_HOSTS=localhost,127.0.0.1
+    volumes:
+      - /src/public/kimai:/opt/kimai/public
