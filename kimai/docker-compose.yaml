@@ -24,6 +24,7 @@ services:
 
   kimai:
     image: kimai/kimai2:latest
+    container_name: kimai
     restart: unless-stopped
     environment:
       - ADMINMAIL=${KIMAI_ADMINMAIL}
